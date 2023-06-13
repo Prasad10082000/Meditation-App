@@ -37,7 +37,7 @@ const Account = () => {
             <PersonOutlineIcon color="primary" style={{padding:"8px",boxShadow:"1px 1px 5px 1px #878787",borderRadius:"50%"}}/>
             <Box component="span" style={{margin:16}}>Your Name</Box>
           </Box>
-          <Box style={{display:"flex",alignItems:"center"}}><Box style={{margin:16}} component="span">Prasad Bhujbal</Box><ArrowForwardIosIcon fontSize="16px"/></Box>
+          <Box style={{display:"flex",alignItems:"center"}}><Box style={{margin:16}} component="span"> The gamer </Box><ArrowForwardIosIcon fontSize="16px"/></Box>
         </ListItem>
         <ListItem style={{display:"flex",justifyContent:"space-between"}}>
           <Box style={{display:"flex",alignItems:"center"}}>
