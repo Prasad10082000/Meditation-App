@@ -146,7 +146,7 @@ const Setting = () => {
           </Box>
           <Box>
             <Switch color="default" checked={darkmode} onClick={toggledark} />
-          </Box>
+          </Box>  
         </ListItem>
         <ListItem style={{ display: "flex", justifyContent: "space-between" }}>
           <Box style={{ display: "flex", alignItems: "center" }}>
