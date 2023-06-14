@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   AppBar,
   Badge,
   Box,
   Button,
   Fade,
+  FormControlLabel,
   Menu,
   MenuItem,
   Snackbar,
+  Switch,
   Toolbar,
+  Tooltip,
   styled,
 } from "@mui/material";
 import welcome from "../../assets/welcome.jpeg";
@@ -18,6 +21,7 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../context/Themeprovider";
 
 const Title = styled(Box)`
   font-weight: 700;
@@ -60,7 +64,7 @@ const Navbar = () => {
     vertical: "top",
     horizontal: "center",
   });
-  const {  opens } = state;
+  const { opens } = state;
 
   const handleClicks = (newState) => () => {
     setState({ opens: true, ...newState });
@@ -70,12 +74,28 @@ const Navbar = () => {
     setState({ ...state, opens: false });
   };
 
+  const { darkmode, setDarkmode } = useContext(ThemeContext);
+
+  const toggledark = () => {
+    setDarkmode(!darkmode);
+    localStorage.setItem("darkmode", !darkmode);
+  };
 
   return (
-    <Headerbar>
+    <Headerbar
+      style={darkmode ? { background: "#002f5e" } : { background: "" }}
+    >
       <Wrapperbox>
         <Box style={{ display: "flex", alignItems: "center" }}>
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" ,display: "flex", alignItems: "center" }}>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <img
               src={welcome}
               width={35}
@@ -89,31 +109,38 @@ const Navbar = () => {
         <Box
           style={{ display: "flex", alignItems: "center", marginLeft: "8px" }}
         >
+          <Tooltip title={darkmode ? "Enable Light Mode" : "Enable Dark Mode"}>
+          <FormControlLabel
+            control={
+              <Switch color="default" checked={darkmode} onClick={toggledark} />
+            }
+            color="#fff"
+          /></Tooltip>
           <Button>
             <Badge badgeContent={1} color="warning">
               <NotificationsIcon
-                    onClick={handleClicks({
-                      vertical: "bottom",
-                      horizontal: "right",
-                    })}
+                onClick={handleClicks({
+                  vertical: "bottom",
+                  horizontal: "right",
+                })}
                 style={{ fontSize: 28, color: "#fff" }}
                 color="action"
               />
-                     <Snackbar
-                    open={opens}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "right",
-                    }}
-                    autoHideDuration={6000}
-                    onClose={handleCloses}
-                    sx={{
-                      ".MuiSnackbarContent-root": {
-                        backgroundColor: "rgb(170, 3, 170)",
-                      },
-                    }}
-                    message="Meditation class is live! Click Here to Join!"
-                  />
+              <Snackbar
+                open={opens}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "right",
+                }}
+                autoHideDuration={6000}
+                onClose={handleCloses}
+                sx={{
+                  ".MuiSnackbarContent-root": {
+                    backgroundColor: "rgb(170, 3, 170)",
+                  },
+                }}
+                message="Meditation class is live! Click Here to Join!"
+              />
             </Badge>
           </Button>
           <Button
@@ -156,12 +183,12 @@ const Navbar = () => {
               to="/firstpage"
               style={{ textDecoration: "none", color: "inherit" }}
             >
-            <MenuItem onClick={handleClose}>
-              <IconWrap component={"span"}>
-                <LogoutIcon color="primary" />
-              </IconWrap>
-              Logout
-            </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <IconWrap component={"span"}>
+                  <LogoutIcon color="primary" />
+                </IconWrap>
+                Logout
+              </MenuItem>
             </Link>
           </Menu>
         </Box>

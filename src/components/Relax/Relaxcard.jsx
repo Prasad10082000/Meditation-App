@@ -9,9 +9,10 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { data } from "../../Database/data";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../context/Themeprovider";
 
 const Title = styled(Box)`
   font-size: 25px;
@@ -27,6 +28,7 @@ const MelodiesBtn = styled(Button)`
 `;
 
 const Relaxcard = () => {
+  const {darkmode} = useContext(ThemeContext);
   return (
     <Box>
       <Title component={"h4"}>
@@ -51,6 +53,7 @@ const Relaxcard = () => {
                   },
                   margin: "16px",
                 }}
+                style={darkmode? {background:"#000",color:"#fff",border:"1px solid #fff",boxShadow:" 0 0 10px 0 white"} : {}}
               >
                 <CardMedia
                   sx={{ height: 140 }}
@@ -69,7 +72,7 @@ const Relaxcard = () => {
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    style={{ textAlign: "left" }}
+                    style={darkmode? { textAlign: "left",color:"#fff" } :{textAlign: "left"}}
                   >
                     {item.subTitle}
                   </Typography>

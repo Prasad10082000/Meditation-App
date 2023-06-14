@@ -44,3 +44,11 @@
 .active:hover {
   transform: rotate(360deg);
 }
+
+.dark-mode{
+  background: #002f5e;
+}
+
+.dark-mode body{
+  background-color: black;
+}

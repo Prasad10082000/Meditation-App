@@ -8,10 +8,11 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import SpaOutlinedIcon from "@mui/icons-material/SpaOutlined";
 import { data } from "../../Database/data";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../context/Themeprovider";
 
 const Title = styled(Box)`
   font-size: 25px;
@@ -20,12 +21,13 @@ const Title = styled(Box)`
 `;
 
 const Products = () => {
+  const {darkmode} = useContext(ThemeContext);
   return (
     <Box>
-      <Title component={"h4"} style={{ textAlign: "left" }}>
+      <Title component={"h4"} sx={{ textAlign: "left" }} style={darkmode ? {color:"#fff"}:{color:""}}>
         <SpaOutlinedIcon /> Meditation
       </Title>
-      <Divider style={{ margin: 16, color: "#0E00A0" }} />
+      <Divider style={darkmode?{ margin: 16, background: "#fff" }:{ margin: 16, background: "#0E00A0" } } />
       <Grid container spacing={1}>
         {data.map((item) => (
           <Grid item xl={3} lg={3} md={4} sm={6} xs={6} key={item.id}>
@@ -42,6 +44,7 @@ const Products = () => {
                   },
                   margin:"16px"
                 }}
+                style={darkmode? {background:"#000",color:"#fff",border:"1px solid #fff",boxShadow:" 0 0 10px 0 white"} : {}}
               >
                 <CardMedia
                   sx={{ height: 140 }}
@@ -60,7 +63,7 @@ const Products = () => {
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    style={{ textAlign: "left" }}
+                    style={darkmode? { textAlign: "left",color:"#fff" } :{textAlign: "left"}}
                   >
                     {item.subTitle}
                   </Typography>

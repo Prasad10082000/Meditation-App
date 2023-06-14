@@ -24,6 +24,8 @@ import Firstpage from "./components/Firstpage/Firstpage";
 import Loginpage from "./components/Loginpage/Loginpage";
 import Signuppage from "./components/Sign/Signup";
 import BasicTabs from "./components/Subscription/Subcription";
+import { useContext } from "react";
+import { ThemeContext } from "./context/Themeprovider";
 
 function App() {
   const location = useLocation();
@@ -31,9 +33,10 @@ function App() {
   const isLoginPage = location.pathname === '/loginpage';
   const isSignPage = location.pathname === '/signup';
 
+  const {darkmode} = useContext(ThemeContext);
 
   return (
-    <div className="App">
+    <div className="App" style={darkmode ? {background:"#000",color:"#fff",height:"auto"}:{background:"#fff"}}>
          {!isSignupPage && !isLoginPage && !isSignPage && <Navbar />}
         <Routes>
           <Route path="/" element={<Home />} />

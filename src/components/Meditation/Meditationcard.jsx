@@ -9,9 +9,10 @@ import {
   styled,
   Divider,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { data } from "../../Database/data";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../context/Themeprovider";
 
 
 const MelodiesBtn = styled(Button)`
@@ -28,6 +29,8 @@ const Title = styled(Box)`
 `;
 
 const Meditationcard = () => {
+
+  const {darkmode} = useContext(ThemeContext);
   return (
     <Box>
       <Title component={"h4"}>
@@ -50,7 +53,9 @@ const Meditationcard = () => {
                     xl:"250px"
                   },
                   margin:"16px"
-                }}>
+                }}
+                style={darkmode? {background:"#000",color:"#fff",border:"1px solid #fff",boxShadow:" 0 0 10px 0 white"} : {}}
+                >
                 <CardMedia
                   sx={{ height: 140 }}
                   image={item.imgUrl}
@@ -67,7 +72,7 @@ const Meditationcard = () => {
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    style={{ textAlign: "left" }}
+                    style={darkmode? { textAlign: "left",color:"#fff" } :{textAlign: "left"}}
                   >
                     {item.subTitle}
                   </Typography>

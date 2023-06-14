@@ -1,6 +1,7 @@
 import { Box, Button, styled } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import welcome from "../../assets/welcome.jpeg";
+import { ThemeContext } from "../../context/Themeprovider";
 
 const UserMsg = styled(Box)`
   /* padding-top: 40px; */
@@ -77,6 +78,8 @@ const MidSection = () => {
     }
   }, [userMsg]);
 
+  const {darkmode} = useContext(ThemeContext);
+
   return (
     <Box>
       <UserMsg component={"h1"}>{userMsg}, User</UserMsg>
@@ -88,8 +91,8 @@ const MidSection = () => {
           alignItems: "center",
         }}
       >
-        <Button variant="outlined">{Datenew}</Button>
-        <Button variant="outlined" style={{ padding: "5px 15px", margin: 8 }}>
+        <Button variant={darkmode ? "contained" : "outlined"}>{Datenew}</Button>
+        <Button variant={darkmode ? "contained" : "outlined"} style={{ padding: "5px 15px", margin: 8 }}>
           {formattedTime}
         </Button>
       </Box>

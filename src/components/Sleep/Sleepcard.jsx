@@ -6,12 +6,15 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { sleepdata } from "../../Database/data";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../context/Themeprovider";
 
 
 const Sleepcard = () => {
+  const {darkmode} = useContext(ThemeContext);
+
   return (
     <Box>
       <Grid container spacing={1}>
@@ -25,7 +28,9 @@ const Sleepcard = () => {
                     xl:"250px"
                   },
                   margin:"16px"
-                }}>
+                }}
+                style={darkmode? {background:"#000",color:"#fff",border:"1px solid #fff",boxShadow:" 0 0 10px 0 white"} : {}}
+                >
               <CardMedia
                 sx={{ height: 140 }}
                 image={item.imgUrl}
@@ -42,7 +47,7 @@ const Sleepcard = () => {
                 <Typography
                   variant="body2"
                   color="text.secondary"
-                  style={{ textAlign: "left" }}
+                  style={darkmode? { textAlign: "left",color:"#fff" } :{textAlign: "left"}}
                 >
                   {item.subTitle}
                 </Typography>

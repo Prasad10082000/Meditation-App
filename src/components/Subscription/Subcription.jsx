@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import { Button, ListItem, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { ThemeContext } from '../../context/Themeprovider';
 
 
 const Heading = styled(ListItem)`
@@ -53,16 +54,17 @@ export default function BasicTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const {darkmode} = React.useContext(ThemeContext);
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }} style={darkmode? {background:"#000",height:"100vh"}:{}}>
 
 <Link to="/setting" style={{textDecoration:"none",color:"inherit"}}>
                 <Heading>
           <ArrowBackIosIcon />
           <Box
             component="span"
-            style={{ color: "#696767", fontSize: "20px", fontWeight: 600 }}
+            style={darkmode?{ color: "#fff", fontSize: "20px", fontWeight: 600}:{ color: "#696767", fontSize: "20px", fontWeight: 600 }}
           >
             Manage Subscription
           </Box>
@@ -71,10 +73,10 @@ export default function BasicTabs() {
 
 
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
-          <Tab label="community" {...a11yProps(0)} sx={{pl:{md:20,sm:2},pr:{md:20,sm:2},fontWeight:"bold",color:"#000"}}/>
-          <Tab label="Pro" {...a11yProps(1)} sx={{pl:{md:20,sm:2},pr:{md:20,sm:2},fontWeight:"bold",color:"#000"}}/>
-          <Tab label="Premium" {...a11yProps(2)} sx={{pl:{md:20,sm:2},pr:{md:20,sm:2},fontWeight:"bold",color:"#000"}}/>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered style={darkmode ? {borderTop:"1px solid #fff"}:{}}>
+          <Tab label="community" {...a11yProps(0)} sx={{pl:{md:20,sm:2},pr:{md:20,sm:2},fontWeight:"bold",color:"#000"}} style={darkmode?{color:"#FFF"}:{}}/>
+          <Tab label="Pro" {...a11yProps(1)} sx={{pl:{md:20,sm:2},pr:{md:20,sm:2},fontWeight:"bold",color:"#000"}} style={darkmode?{color:"#FFF"}:{}}/>
+          <Tab label="Premium" {...a11yProps(2)} sx={{pl:{md:20,sm:2},pr:{md:20,sm:2},fontWeight:"bold",color:"#000"}} style={darkmode?{color:"#FFF"}:{}}/>
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

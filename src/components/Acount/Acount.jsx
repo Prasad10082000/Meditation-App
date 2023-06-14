@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, List, ListItem, Switch, styled } from "@mui/material";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LoginIcon from '@mui/icons-material/Login';
@@ -10,6 +10,7 @@ import SyncIcon from '@mui/icons-material/Sync';
 
 import { Link } from "react-router-dom";
 import FormDialog from "./AccountDialog";
+import { ThemeContext } from "../../context/Themeprovider";
 
 const Heading = styled(ListItem)`
   display: flex;
@@ -17,15 +18,16 @@ const Heading = styled(ListItem)`
 `;
 
 const Account = () => {
+  const {darkmode} =useContext(ThemeContext);
   return (
-    <Box>
+    <Box style={darkmode? {background:"#000",height:"100vh"}:{}}>
       <List style={{ padding: "16px",marginBottom:50,lineHeight:1}}>
         <Link to="/setting" style={{textDecoration:"none",color:"inherit"}}>
                 <Heading>
           <ArrowBackIosIcon />
           <Box
             component="span"
-            style={{ color: "#696767", fontSize: "20px", fontWeight: 600 }}
+            style={darkmode?{ color: "#fff", fontSize: "20px", fontWeight: 600}:{ color: "#696767", fontSize: "20px", fontWeight: 600 }}
           >
             Account
           </Box>

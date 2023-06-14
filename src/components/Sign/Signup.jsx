@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../context/Themeprovider";
 
 const LogoImg = styled("img")`
   height: 10vh;
@@ -26,6 +27,7 @@ const Signuppage = () => {
   const Logo = "https://breathlly.netlify.app/assets/logo.png";
   const FBlogo = "https://breathlly.netlify.app/assets/facebbok.png";
   const Googlelogo = "https://breathlly.netlify.app/assets/google.png";
+  const {darkmode} =useContext(ThemeContext);
   return (
     <>
       <Box>
@@ -75,20 +77,20 @@ const Signuppage = () => {
             <TextField
               id="outlined-basic"
               label="Name *"
-              variant="outlined"
-              style={{ marginBottom: 16,width:"100%" }}
+              variant={darkmode ?"filled":"outlined"}
+              style={darkmode ? { marginBottom: 16,width:"100%" , background:"#FFF" } : { marginBottom: 16,width:"100%" }}
             />
             <TextField
               id="outlined-basic"
               label="Email Address *"
-              variant="outlined"
-              style={{ marginBottom: 16,width:"100%" }}
+              variant={darkmode ?"filled":"outlined"}
+              style={darkmode ? { marginBottom: 16,width:"100%" , background:"#FFF" } : { marginBottom: 16,width:"100%" }}
             />
             <TextField
               id="outlined-basic"
               label="Password *"
-              variant="outlined"
-              style={{ marginBottom:16,width:"100%"}}
+              variant={darkmode ?"filled":"outlined"}
+              style={darkmode ? { marginBottom: 16,width:"100%" , background:"#FFF" } : { marginBottom: 16,width:"100%" }}
             />
           </Box>
           <Box>
